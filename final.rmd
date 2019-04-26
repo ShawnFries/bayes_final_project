@@ -1,0 +1,21 @@
+---
+title: "Bayes Final Project"
+author: "Taylor Fortnam"
+date: "April 10, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+
+```
+
+```{r}
+df=read.csv("/Users/tfortnam/Desktop/Bayes/data.csv", header=T, skip=2)
+
+head(df)
+length(unique(df$StudyID))
+#523
+```
