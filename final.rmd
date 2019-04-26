@@ -13,8 +13,26 @@ knitr::opts_chunk$set(warning = FALSE)
 ```
 
 ```{r}
-df=read.csv("/Users/tfortnam/Desktop/Bayes/data.csv", header=T, skip=2)
+df=read.csv("/Users/tfortnam/Desktop/Bayes/data.csv", header=T, skip=2)[1:1199 , 1:19]
 
+head(df)
+df[ , "Dosage"] <- NA
+
+#print(grep(" ", df$Drug, value=T))
+#print(sapply(df$Drug[grep(" ", df$Drug)], function(x) sub(".* ", "", x)))
+
+df$Dosage[grep(" ", df$Drug)] <- sapply(df$Drug[grep(" ", df$Drug)], function(x) sub(".* ", "", x))  # If it contains a space, extract everything after first space (dosage)
+
+#print(df$Dosage)
+#df$Dosage <- sapply(df$Drug, function(x) ifelse(grep(" ", x), sub(".* ", "", x), 0))
+#print(df$Dosage)
+
+#print(unique(df$Dosage))
+
+df$Drug <- sapply(df$Drug, function(x) tolower(sub(" .*", "", x)))  # Takes care of Placebo / placebo being separate
+length(unique(df$StudyID)) # 522
+length(unique(df$Drug))  # 22
+length(unique(df$Dosage))  # 39 but includes NA
 head(df)
 length(unique(df$StudyID))
 #523
