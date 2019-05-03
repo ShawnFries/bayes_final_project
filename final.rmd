@@ -72,5 +72,8 @@ str(df)
 nma.networkplot(StudyID, Drug, df)
 df <- df[!is.na(df$Responders), ]
 
-nma.ab.bin(StudyID, Drug, Responders, No_randomised, df, digits=3, conv.diag=T, dic=T, postdens=T, higher.better=T, n.iter=1000, n.burnin=100)
+network_analysis <- nma.ab.bin(StudyID, Drug, Responders, No_randomised, df, digits=3, conv.diag=T, dic=T, postdens=T, higher.better=T, n.iter=1000, n.burnin=100)
+network_analysis
+absolute.plot(network_analysis)
+rank.prob(network_analysis)
 ```
